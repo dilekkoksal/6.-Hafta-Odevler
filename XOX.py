@@ -39,7 +39,8 @@ y_kordinat=[]
 x_kordinat=[]
 x=[]
 o=[]
-
+kazanan_deger=[[],[],[]]
+deger=[]
 for i in tablo:
     print("\t",i,sep="\n")
 while True:
@@ -53,8 +54,22 @@ while True:
     print("Simge :{}".format(simge))
     if simge == "X":
         print("Bilgisayar Oynuyor!!")
-        x = random.randint(1, 3)
-        y = random.randint(1, 3)
+        if len(x_kordinat) > 2:
+            for i in kazanma_ihtimalleri:
+                kazanan_deger = [[], [], []]
+                for j in x_kordinat:
+                    if j in i:
+                        kazanan_deger.insert(i.index(j), j)
+                        kazanan_deger.pop(i.index(j) + 1)
+                print(kazanan_deger)
+                if kazanan_deger.count([]) == 1:
+                    f = kazanan_deger.index([])
+                    x = i[f][0]+1
+                    y = i[f][1]+1
+                    break
+        else:
+            x = random.randint(1, 3)
+            y = random.randint(1, 3)
         print("Kordinatlar", x,y)
     if simge=="O":
         x=input("Yukaridan asagiya (1,2,3):")
